@@ -39,10 +39,8 @@ public class Dashboard extends Application {
 		thread(new Runner(),false); 
 	}
 
-	@Override // Override the start method in the Application class
-	public void start(Stage primaryStage) {
+	public void setPane(GridPane pane) {
 		// Create a pane and set its properties
-		GridPane pane = new GridPane();
 		pane.setAlignment(Pos.CENTER);
 		pane.setPadding(new Insets(11.5, 12.5, 13.5, 14.5));
 		pane.setHgap(5.5);
@@ -53,10 +51,14 @@ public class Dashboard extends Application {
 		pane.add(new Label("Richting:"), 0, 1);
 		TextField richting = new TextField("1 of -1");
 		pane.add(richting, 1, 1);
+	}
+
+	public void setButtons(GridPane pane) {
 		Button btBord = new Button("Start Bord");
 		btBord.setOnAction(e -> {
 			startBord(halteInput.getText(), richting.getText());
 		});
+
 		Button btStart = new Button("Start");
 		btStart.setOnAction( e -> {
 			startAlles();
@@ -65,12 +67,20 @@ public class Dashboard extends Application {
 		btLogger.setOnAction( e -> {
 			thread(new ArrivaLogger(), false);
 		});
+
 		pane.add(btBord, 1, 5);
 		pane.add(btStart, 2, 5);
 		pane.add(btLogger, 3, 5);
 		GridPane.setHalignment(btBord, HPos.LEFT);
 		GridPane.setHalignment(btStart, HPos.LEFT);
 		GridPane.setHalignment(btLogger, HPos.LEFT);
+	}
+
+	@Override // Override the start method in the Application class
+	public void start(Stage primaryStage) {
+		GridPane pane = new GridPane();
+		setPane(pane);
+		setButtons(pane);
 		Scene scene = new Scene(pane);
 		primaryStage.setTitle("BusSimulatie control-Center");
 		primaryStage.setScene(scene);

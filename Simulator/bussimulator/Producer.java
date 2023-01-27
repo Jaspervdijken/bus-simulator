@@ -33,7 +33,6 @@ public class Producer {
     		e.printStackTrace();
     	}
     }
-        
     
     private void createConnection() throws JMSException {
        ConnectionFactory connectionFactory =

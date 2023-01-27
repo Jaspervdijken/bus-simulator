@@ -51,7 +51,7 @@ public class Runner implements Runnable {
 		}				
 	}
 
-	public static int initBussen(){
+	public static createBussenBatchOne() {
 		Bus bus1=new Bus(Lijnen.LIJN1, Bedrijven.ARRIVA, 1);
 		Bus bus2=new Bus(Lijnen.LIJN2, Bedrijven.ARRIVA, 1);
 		Bus bus3=new Bus(Lijnen.LIJN3, Bedrijven.ARRIVA, 1);
@@ -67,21 +67,26 @@ public class Runner implements Runnable {
 		Bus bus13=new Bus(Lijnen.LIJN3, Bedrijven.ARRIVA, 1);
 		Bus bus14=new Bus(Lijnen.LIJN4, Bedrijven.ARRIVA, 1);
 		Bus bus15=new Bus(Lijnen.LIJN5, Bedrijven.FLIXBUS, 1);
+	}
+
+	public static addBussenBatchOne() {
 		addBus(3, bus1);
 		addBus(5, bus2);
 		addBus(4, bus3);
-		addBus(6, bus4);	
+		addBus(6, bus4);
 		addBus(3, bus5);
 		addBus(5, bus6);
-		addBus(4, bus7); 
-		addBus(6, bus8);	
-		addBus(12, bus9); 
-		addBus(10, bus10);	
+		addBus(4, bus7);
+		addBus(6, bus8);
+		addBus(12, bus9);
+		addBus(10, bus10);
 		addBus(3, bus11);
 		addBus(5, bus12);
 		addBus(14, bus13);
-		addBus(16, bus14);	
+		addBus(16, bus14);
 		addBus(13, bus15);
+	}
+	public static createBussenBatchTwo() {
 		Bus bus21=new Bus(Lijnen.LIJN1, Bedrijven.ARRIVA, -1);
 		Bus bus22=new Bus(Lijnen.LIJN2, Bedrijven.ARRIVA, -1);
 		Bus bus23=new Bus(Lijnen.LIJN3, Bedrijven.ARRIVA, -1);
@@ -97,44 +102,34 @@ public class Runner implements Runnable {
 		Bus bus33=new Bus(Lijnen.LIJN3, Bedrijven.ARRIVA, -1);
 		Bus bus34=new Bus(Lijnen.LIJN4, Bedrijven.ARRIVA, -1);
 		Bus bus35=new Bus(Lijnen.LIJN5, Bedrijven.FLIXBUS, -1);
+	}
+
+	public static addBussenBatchTwo() {
 		addBus(3, bus21);
 		addBus(5, bus22);
 		addBus(4, bus23);
-		addBus(6, bus24);	
+		addBus(6, bus24);
 		addBus(3, bus25);
 		addBus(5, bus26);
-		addBus(4, bus27); 
-		addBus(6, bus28);	
-		addBus(12, bus29); 
-		addBus(10, bus30);	
+		addBus(4, bus27);
+		addBus(6, bus28);
+		addBus(12, bus29);
+		addBus(10, bus30);
 		addBus(3, bus31);
 		addBus(5, bus32);
 		addBus(14, bus33);
-		addBus(16, bus34);	
+		addBus(16, bus34);
 		addBus(13, bus35);
+	}
+
+	public static int initBussen(){
+		createBussenBatchOne();
+		addBussenBatchOne();
+		createBussenBatchTwo();
+		addBussenBatchTwo();
 		return Collections.min(busStart.keySet());
 	}
 
-//	@Override
-//	public void run() {
-//		int tijd=0;
-//		int volgende = initBussen();
-//		while ((volgende>=0) || !actieveBussen.isEmpty()) {
-//			System.out.println("De tijd is:" + tijd);
-//			volgende = (tijd==volgende) ? startBussen(tijd) : volgende;
-//			moveBussen(tijd);
-//			sendETAs(tijd);
-//			try {
-//				Thread.sleep(interval);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			tijd++;
-//		}
-//	}
-//	Om de tijdsynchronisatie te gebruiken moet de onderstaande run() gebruikt worden
-//
 	@Override
 	public void run() {
 		int tijd=0;
@@ -152,7 +147,6 @@ public class Runner implements Runnable {
 			try {
 				tijdFuncties.simulatorStep();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

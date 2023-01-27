@@ -21,13 +21,13 @@ public class QueueListener implements MessageListener {
 			if (message instanceof TextMessage) {
 	            TextMessage textMessage = (TextMessage) message;
 				String text = textMessage.getText();
-//				System.out.println("Consumer("+consumerName+")");
 				berichten.nieuwBericht(text);
 				infobord.updateBord();
 			} else {
 	            System.out.println("Consumer("+consumerName+"): Received: " + message);
 	        }
-		} 	        catch (JMSException e) {
+		}
+		catch (JMSException e) {
 			e.printStackTrace();
     	}
 	}
